@@ -1,11 +1,12 @@
 # Use this t clean a bit the name
 def clean(name):
-    return name.strip().capitalize()
+    a = [name.strip().capitalize() for name in name.split()]
+    return " ".join(a)
 
-# A data substition file must contains a "patterns" vector containing the "string" to replace and the replacement function.     
-patterns = { 
+# A data substition file must contains a "patterns" vector containing the "string" to replace and the replacement function.
+patterns = {
     "${ID}"  : lambda x: x["NOM"].lower().strip()+"-"+x["PRENOM"].lower().strip(),
     "${NOM}" : lambda x: clean(x["NOM"]),
     "${PRENOM}" : lambda x: clean(x["PRENOM"]),         
-    "${AFFILIATION}" : lambda x: "TheSofaConnection"         
+    "${AFFILIATION}" : lambda x: x["AFFILIATION"]
 }
